@@ -14,15 +14,33 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 import java.net.InetSocketAddress
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.concurrent.TimeUnit
 
-class Extensions {
+fun isNetworkAvailable(context: Context): Boolean {
+    val connectMgr: ConnectivityManager =
+        context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val activeNetworkInfo = connectMgr.activeNetworkInfo
+    return activeNetworkInfo != null && activeNetworkInfo.isConnected
+}
 
-    fun isNetworkAvailable(context: Context): Boolean {
-        val connectMgr: ConnectivityManager =
-            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-        val activeNetworkInfo = connectMgr.activeNetworkInfo
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected
+fun convertMillisecondsToMinutes(milliseconds: Long?): Long? = milliseconds?.let {
+    TimeUnit.MILLISECONDS.toMinutes(
+        it
+    )
+}
+fun convertMillisecondsToSeconds(milliseconds: Long): Long = TimeUnit.MILLISECONDS.toSeconds(milliseconds)
+
+fun getDateFromMilliseconds(millis: Long?): String {
+    val dateFormat = "MMMMM yyyy"
+    val formatter = SimpleDateFormat(dateFormat, Locale.getDefault())
+    val calendar = Calendar.getInstance()
+
+    if (millis != null) {
+        calendar.timeInMillis = millis
     }
+    return formatter.format(calendar.time)
 }
 
 class ConnectionLiveData(context: Context) : LiveData<Boolean>() {
