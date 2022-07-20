@@ -196,7 +196,7 @@ fun PodXLargeView(
                                 text = podcastObject.podcast_title_highlighted.toString(),
                                 style = MaterialTheme.typography.h2,
                                 color = Color.White,
-                                maxLines = 3,
+                                maxLines = 4,
                                 modifier = Modifier.width(250.dp)
                             )
                         }
