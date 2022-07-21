@@ -1,4 +1,4 @@
-package com.codebaron.podcast.models
+package com.codebaron.podcast.models.genre
 
 data class PodcastGenres(
     val genres: List<Genre>

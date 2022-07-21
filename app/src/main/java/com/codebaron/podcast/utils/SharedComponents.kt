@@ -101,7 +101,7 @@ fun PodXLargeView(
     isPlaying: Boolean,
     podcasts: List<Result>
 ) {
-    val podcastObject = dummyResult[0]
+    val podcastObject = podcasts.random()
 
     Scaffold {
         Column(
@@ -153,7 +153,7 @@ fun PodXLargeView(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(15.dp),
+                            .padding(10.dp),
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -193,7 +193,7 @@ fun PodXLargeView(
                                 color = Color.White
                             )
                             Text(
-                                text = podcastObject.podcast_title_highlighted.toString(),
+                                text = podcastObject.podcast_title_original.toString(),
                                 style = MaterialTheme.typography.h2,
                                 color = Color.White,
                                 maxLines = 4,
@@ -250,6 +250,7 @@ fun PodXLargeView(
                                 .height(80.dp)
                                 .padding(15.dp)
                                 .clip(RoundedCornerShape(60.dp))
+                                .background(color = Color.Black)
                                 .clickable { },
                             contentColor = Color.White
                         ) {
@@ -284,27 +285,28 @@ fun PodXLargeView(
                             )
                         }
                     }
-                    Spacer(modifier = Modifier.size(20.dp))
+                    Spacer(modifier = Modifier.size(10.dp))
                     Text(
-                        text = podcastObject.description_original.toString(),
+                        text = "${podcastObject.description_highlighted}...",
                         style = MaterialTheme.typography.caption,
-                        color = Color.White
+                        color = Color.White,
+                        maxLines = 3
                     )
                 }
             }
-            Spacer(modifier = Modifier.size(20.dp))
             LazyColumn {
-                items(dummyResult) { podx ->
+                items(podcasts) { podx ->
                     Box(
                         modifier = Modifier
-                            .height(120.dp)
+                            .height(100.dp)
                             .fillMaxWidth()
+                            .padding(5.dp)
                             .clip(RoundedCornerShape(10.dp))
                     ) {
                         Row(modifier = Modifier.fillMaxWidth()) {
                             Image(
                                 modifier = Modifier
-                                    .height(120.dp)
+                                    .height(90.dp)
                                     .width(120.dp)
                                     .padding(2.dp)
                                     .clip(RoundedCornerShape(10.dp)),
@@ -322,10 +324,10 @@ fun PodXLargeView(
                             Column(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .fillMaxWidth()
+                                    .fillMaxWidth().padding(5.dp)
                             ) {
                                 Text(
-                                    text = podx.podcast_title_highlighted.toString(),
+                                    text = podx.podcast_title_original.toString(),
                                     style = MaterialTheme.typography.h3,
                                     maxLines = 2
                                 )
@@ -353,7 +355,9 @@ fun PodXLargeView(
                                         )
                                         Text(
                                             text = podx.publisher_original.toString(),
-                                            style = MaterialTheme.typography.caption
+                                            style = MaterialTheme.typography.caption,
+                                            maxLines = 1,
+                                            modifier = Modifier.width(100.dp)
                                         )
                                     }
                                     Box(
@@ -364,7 +368,7 @@ fun PodXLargeView(
                                             imageVector = Icons.Filled.PlayCircle,
                                             contentDescription = null,
                                             modifier = Modifier
-                                                .size(50.dp)
+                                                .size(30.dp)
                                                 .clickable { }
                                         )
                                     }

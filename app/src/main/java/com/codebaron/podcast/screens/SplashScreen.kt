@@ -5,7 +5,10 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,10 +24,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.codebaron.podcast.MainActivity
 import com.codebaron.podcast.R
-import com.codebaron.podcast.navigation.Destinations
 import com.codebaron.podcast.ui.theme.PodcastTheme
 import com.codebaron.podcast.utils.ConnectionLiveData
-import kotlinx.coroutines.delay
 
 @Composable
 fun SplashScreen(context: MainActivity, navigationController: NavController) {
@@ -50,17 +51,10 @@ fun SplashScreen(context: MainActivity, navigationController: NavController) {
         ) {
             ViewAnimations()
         }
-        LaunchedEffect(Unit) {
+        /*LaunchedEffect(Unit) {
             delay(300)
             navigationController.navigate(Destinations.POD_X_HOME_SCREEN.name)
-            /*connectionLiveData.observe(context) { isNetworkAvailable ->
-                isNetworkAvailable?.let {
-                    if (it) {
-                        navigationController.navigate(Destinations.POD_X_HOME_SCREEN.name)
-                    }
-                }
-            }*/
-        }
+        }*/
     }
 }
 
