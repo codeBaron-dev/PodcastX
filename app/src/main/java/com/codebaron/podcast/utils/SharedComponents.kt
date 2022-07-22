@@ -242,35 +242,35 @@ fun PodXLargeView(
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(80.dp)
+                            .height(80.dp),
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Card(
-                            modifier = Modifier
-                                .width(170.dp)
-                                .height(80.dp)
-                                .padding(15.dp)
-                                .clip(RoundedCornerShape(60.dp))
-                                .background(color = Color.Black)
-                                .clickable { },
-                            contentColor = Color.White
+                        Button(
+                            onClick = { /* ... */ },
+                            // Uses ButtonDefaults.ContentPadding by default
+                            contentPadding = PaddingValues(
+                                start = 20.dp,
+                                top = 12.dp,
+                                end = 20.dp,
+                                bottom = 12.dp
+                            ),
+                            colors = ButtonDefaults.buttonColors(
+                                backgroundColor = Color.Black,
+                                contentColor = Color.White
+                            )
                         ) {
-                            Row(
-                                modifier = Modifier.fillMaxWidth(),
-                                verticalAlignment = Alignment.CenterVertically,
-                                horizontalArrangement = Arrangement.SpaceEvenly,
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.FollowTheSigns,
-                                    contentDescription = null,
-                                    modifier = Modifier
-                                        .clickable { }
-                                )
-                                Text(
-                                    text = "Follow",
-                                    style = MaterialTheme.typography.body1,
-                                    maxLines = 1
-                                )
-                            }
+                            Icon(
+                                imageVector = Icons.Outlined.FollowTheSigns,
+                                contentDescription = null,
+                                modifier = Modifier
+                                    .clickable { }
+                            )
+                            Spacer(Modifier.size(ButtonDefaults.IconSpacing))
+                            Text(
+                                text = "Follow",
+                                style = MaterialTheme.typography.body1,
+                                maxLines = 1
+                            )
                         }
                         Box(
                             modifier = Modifier
@@ -324,7 +324,8 @@ fun PodXLargeView(
                             Column(
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
-                                    .fillMaxWidth().padding(5.dp)
+                                    .fillMaxWidth()
+                                    .padding(5.dp)
                             ) {
                                 Text(
                                     text = podx.podcast_title_original.toString(),
